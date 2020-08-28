@@ -1,0 +1,51 @@
+version: "2"
+
+services:
+  node:
+    container_name: ${CONTAINER_NAME}_node
+    build:
+      context: ${PATH_HOST}/../node
+      dockerfile: Dockerfile
+    volumes:
+      - "../node:/app"
+    ports:
+      - "49160:8080"
+    environment:
+      - NODE_ENV=development
+#  node:
+#    container_name: ${CONTAINER_NAME}_react
+#    build:
+#      context: ${PATH_HOST}/../react
+#      dockerfile: Dockerfile
+#    volumes:
+#      - "../react:/app"
+#    ports:
+#      - "3001:3000"
+#    environment:
+#      - NODE_ENV=development
+#
+#  ### MySQL Container ###
+#  mysql:
+#    container_name: ${CONTAINER_NAME}_mysql
+#    restart: always
+#    image: mysql:${MYSQL_VERSION}
+#    command: --sql_mode="" --collation-server=utf8mb4_unicode_ci --character-set-server=utf8mb4
+#    ports:
+#      - 3306:3306
+#    volumes:
+#      - ${PATH_HOST}/mysql/datas:/var/lib/mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#
+#  ### PHPMyAdmin Container ###
+#  phpmyadmin:
+#    container_name: ${CONTAINER_NAME}_phpmyadmin
+#    image: phpmyadmin/phpmyadmin
+#    restart: always
+#    ports:
+#      - 8080:80
+#    environment:
+#      MYSQL_USERNAME: root
+#      MYSQL_PASSWORD: root
+#    links:
+#      - mysql:db
